@@ -20,7 +20,7 @@ p.s. i am NOT responsible for any damages. If you will contact me
 - Download the last release from [here](https://github.com/BurningHAM18/adcatch).
 - Unzip and run 
 `
-Ad_Catch_v1.0/obj/Debug/Ad_Catch.exe
+Program/Ad_Catch.exe
 `
   as administrator
 - Say bye to ads
