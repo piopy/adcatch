@@ -90,7 +90,6 @@
     <Content Include="ico.ico" />
     <None Include="Resources\host.bmp" />
     <EmbeddedResource Include="Resources\ico_small.png" />
-    <EmbeddedResource Include="Resources\hostnospotify" />
     <None Include="Resources\hostparental" />
     <None Include="Resources\ico.png" />
   </ItemGroup>

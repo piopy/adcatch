@@ -121,9 +121,6 @@
   <data name="host" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\host;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
-  <data name="hostnospotify" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\hostnospotify;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
   <data name="hostparental" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\hostparental;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>

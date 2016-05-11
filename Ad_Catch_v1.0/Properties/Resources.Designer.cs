@@ -73,16 +73,6 @@ namespace Ad_Catch_v1._0.Properties {
         /// <summary>
         ///   Cerca una risorsa localizzata di tipo System.Byte[].
         /// </summary>
-        internal static byte[] hostnospotify {
-            get {
-                object obj = ResourceManager.GetObject("hostnospotify", resourceCulture);
-                return ((byte[])(obj));
-            }
-        }
-        
-        /// <summary>
-        ///   Cerca una risorsa localizzata di tipo System.Byte[].
-        /// </summary>
         internal static byte[] hostparental {
             get {
                 object obj = ResourceManager.GetObject("hostparental", resourceCulture);
