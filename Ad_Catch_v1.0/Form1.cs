@@ -11,6 +11,7 @@ using System.Security.Principal;
 using System.IO;
 using System.Reflection;
 using System.Diagnostics;
+using System.Net;
 
 namespace Ad_Catch_v1._0
 {
@@ -22,6 +23,9 @@ namespace Ad_Catch_v1._0
         private System.Windows.Forms.ContextMenu contextMenu1= new System.Windows.Forms.ContextMenu();
         private System.Windows.Forms.MenuItem menuItem1;
         public int status = 0;
+        //cambiare host/hostparental/hostnospotify per generare versioni diverse
+        public byte[] host= Properties.Resources.host;
+        //
 
         public Form1()
         {
@@ -37,6 +41,8 @@ namespace Ad_Catch_v1._0
             isElevated = principal.IsInRole(WindowsBuiltInRole.Administrator);
             //
 
+            updatehostNoPopup();
+            
             #region menu e notifyicon
             this.menuItem1=new System.Windows.Forms.MenuItem();
             this.menuItem1.Index = 0;
@@ -57,15 +63,44 @@ namespace Ad_Catch_v1._0
             #endregion
 
             this.FormClosed += FormClosed;
+            
 
             if (!isElevated)
             {
                 label1.Visible = true;
-                button1.Enabled = false;
-                button2.Enabled = false;
-                button3.Enabled = false;
-
+                startToolStripMenuItem.Enabled = false;
+                //hostUpdatesToolStripMenuItem.Enabled = false;
+                
             }
+
+            
+        }
+
+        public void updatehost()
+        {
+            try {
+                
+                WebClient client = new WebClient();
+                byte[] host2 = client.DownloadData("http://someonewhocares.org/hosts/hosts");
+                this.host = host2;
+                DownloadForm d = new DownloadForm();
+                d.Show();
+                if (d.annullata()) this.host = Properties.Resources.host;
+            }
+            catch (WebException) { MessageBox.Show("Unable to connect to internet.\nPlease check your connection and retry"); this.host = Properties.Resources.host; }
+            
+        }
+
+        public void updatehostNoPopup()
+        {
+            try
+            {
+                WebClient client = new WebClient();
+                byte[] host2 = client.DownloadData("http://someonewhocares.org/hosts/hosts");
+                this.host = host2;
+            }
+            catch (WebException) { this.host = Properties.Resources.host; }
+
         }
 
         private void Form1_FormClosed(object sender, FormClosedEventArgs e)
@@ -105,9 +140,12 @@ namespace Ad_Catch_v1._0
 
         private void button3_Click(object sender, EventArgs e)
         {
-            this.WindowState = FormWindowState.Minimized;
+            //now is the new minimize method
+            if(this.WindowState == FormWindowState.Minimized)
+            { 
             this.Hide();
             notifyIcon1.Visible = true;
+            }
         }
 
         private void button4_Click(object sender, EventArgs e)
@@ -122,13 +160,9 @@ namespace Ad_Catch_v1._0
             
         }
 
-
-
-        
-
         private void label3_Click(object sender, EventArgs e)
         {
-
+            System.Diagnostics.Process.Start("https://github.com/BurningHAM18");
         }
 
         private void Form1_FormClosing(Object sender, FormClosingEventArgs e)
@@ -147,32 +181,11 @@ namespace Ad_Catch_v1._0
             
         }
 
-
-        /*
-                    
-                        System.IO.File.Copy(host_loc, host_loc + ".tmp");
-                        System.IO.File.Move(location, backup);      //crea backup
-                        System.IO.File.Move(host_loc, location);    //muove host dalla cartella alla directory di sistema
-                        System.IO.File.Move(host_loc + ".tmp", host_loc);
-
-                        MessageBox.Show("Service successfully started!");
-                        this.status = 1;
-                    }
-                }
-            }
-        }
-
-        
-        } 
-        */
-
         private void start()
         {
             string location = "C:\\Windows\\System32\\drivers\\etc\\hosts";
             string backup = "C:\\Windows\\System32\\drivers\\etc\\hosts.backupAdCatch";
-            //cambiare host/hostparental/hostnospotify per generare versioni diverse
-            byte[] host = Properties.Resources.host;
-            //
+            
 
             if (this.status == 1) MessageBox.Show("Service already started!");
             if (this.status == 0)
@@ -216,6 +229,30 @@ namespace Ad_Catch_v1._0
                 }
             }
         }
-        
+
+        private void startAdCatchToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            start();
+        }
+
+        private void stopAdCatchToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            stop();
+        }
+
+        private void aboutToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            MessageBox.Show("© Copyright 2016, BurningHAM18. \n License: GNU GPL");
+        }
+
+        private void programUpdatesToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            System.Diagnostics.Process.Start("https://github.com/BurningHAM18/adcatch/releases");
+        }
+
+        private void hostUpdatesToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            updatehost();
+        }
     }
 }
