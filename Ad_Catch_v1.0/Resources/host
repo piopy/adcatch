@@ -89,6 +89,20 @@
 127.0.0.1 goat.cx
 127.0.0.1 www.goat.cx
 
+#AdCatch (c)
+127.0.0.1 rad.msn.com
+127.0.0.1 live.rads.msn.com
+127.0.0.1 ads1.msn.com
+127.0.0.1 static.2mdn.net
+127.0.0.1 g.msn.com
+127.0.0.1 a.ads2.msads.net
+127.0.0.1 b.ads2.msads.net
+127.0.0.1 ac3.msn.com
+0.0.0.0		doubleclick.com
+0.0.0.0		doubleclick.de
+0.0.0.0		doubleclick.net
+#
+
 127.0.0.1 1girl1pitcher.com
 127.0.0.1 1girl1pitcher.org
 127.0.0.1 1guy1cock.com

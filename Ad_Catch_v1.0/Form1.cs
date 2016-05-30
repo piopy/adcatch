@@ -19,6 +19,10 @@ namespace Ad_Catch_v1._0
     {
         System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Form1));
         public event FormClosedEventHandler FormClosed;
+        #region AdCatch 
+        string targ = "127.0.0.1 rad.msn.com\n127.0.0.1 live.rads.msn.com\n127.0.0.1 ads1.msn.com\n127.0.0.1 static.2mdn.net\n127.0.0.1 g.msn.com\n127.0.0.1 a.ads2.msads.net\n127.0.0.1 b.ads2.msads.net\n127.0.0.1 ac3.msn.com\n0.0.0.0		doubleclick.com\n0.0.0.0		doubleclick.de\n0.0.0.0		doubleclick.net";
+        
+        #endregion
         private System.Windows.Forms.NotifyIcon notifyIcon1;
         private System.Windows.Forms.ContextMenu contextMenu1= new System.Windows.Forms.ContextMenu();
         private System.Windows.Forms.MenuItem menuItem1;
@@ -196,11 +200,12 @@ namespace Ad_Catch_v1._0
                     if (File.Exists(backup)) MessageBox.Show("Service already started!");
                     else
                     {
+                        
                         System.IO.File.Move(location, backup);  //crea backup
                         try { File.Delete(location); }
                         catch (FileNotFoundException) { }
                         File.WriteAllBytes(location, host);
-
+                        System.IO.File.AppendAllText(location, targ);
                         MessageBox.Show("Service successfully started!");
                         this.status = 1;
                     }
