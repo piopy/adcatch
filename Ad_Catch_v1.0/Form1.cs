@@ -20,7 +20,7 @@ namespace Ad_Catch_v1._0
         System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Form1));
         public event FormClosedEventHandler FormClosed;
         #region AdCatch 
-        string targ = "\n127.0.0.1 rad.msn.com\n127.0.0.1 live.rads.msn.com\n127.0.0.1 ads1.msn.com\n127.0.0.1 static.2mdn.net\n127.0.0.1 g.msn.com\n127.0.0.1 a.ads2.msads.net\n127.0.0.1 b.ads2.msads.net\n127.0.0.1 ac3.msn.com\n0.0.0.0		doubleclick.com\n0.0.0.0		doubleclick.de\n0.0.0.0		doubleclick.net";
+        string targ = "\n127.0.0.1 rad.msn.com\n127.0.0.1 live.rads.msn.com\n127.0.0.1 ads1.msn.com\n127.0.0.1 static.2mdn.net\n127.0.0.1 g.msn.com\n127.0.0.1 a.ads2.msads.net\n127.0.0.1 b.ads2.msads.net\n127.0.0.1 ac3.msn.com\n0.0.0.0		doubleclick.com\n0.0.0.0		doubleclick.de\n0.0.0.0		doubleclick.net\n0.0.0.0 adclick.g.doubleclick.net\n0.0.0.0 pubads.g.doubleclick.net";
         
         #endregion
         private System.Windows.Forms.NotifyIcon notifyIcon1;

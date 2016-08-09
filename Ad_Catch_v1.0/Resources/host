@@ -12107,7 +12107,8 @@
 127.0.0.1 wes.df.telemetry.microsoft.com
 127.0.0.1 www.msftncsi.com
 #</Windows10>
-
+0.0.0.0 adclick.g.doubleclick.net
+0.0.0.0 
 # Acknowledgements
 # I'd like to thank the following people for submitting sites, and
 # helping promote the site.
