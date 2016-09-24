@@ -5,12 +5,12 @@ using System.Runtime.InteropServices;
 // Le informazioni generali relative a un assembly sono controllate dal seguente 
 // set di attributi. Modificare i valori di questi attributi per modificare le informazioni
 // associate a un assembly.
-[assembly: AssemblyTitle("Ad_Catch_v1.81")]
+[assembly: AssemblyTitle("Ad_Catch_v1.881")]
 [assembly: AssemblyDescription("A simple undetectable Ad-Block")]
 [assembly: AssemblyConfiguration("")]
 [assembly: AssemblyCompany("BurningHAM18")]
-[assembly: AssemblyProduct("Ad_Catch_v1.81")]
-[assembly: AssemblyCopyright("Copyright ©  2016")]
+[assembly: AssemblyProduct("Ad_Catch_v1.881")]
+[assembly: AssemblyCopyright("Copyright ©  2016 BurningHAM18")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]
 

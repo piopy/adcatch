@@ -20,9 +20,13 @@ namespace Ad_Catch_v1._0
         System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Form1));
         public event FormClosedEventHandler FormClosed;
         #region AdCatch 
-        string targ = "\n127.0.0.1 rad.msn.com\n127.0.0.1 live.rads.msn.com\n127.0.0.1 ads1.msn.com\n127.0.0.1 static.2mdn.net\n127.0.0.1 g.msn.com\n127.0.0.1 a.ads2.msads.net\n127.0.0.1 b.ads2.msads.net\n127.0.0.1 ac3.msn.com\n0.0.0.0		doubleclick.com\n0.0.0.0		doubleclick.de\n0.0.0.0		doubleclick.net\n0.0.0.0 adclick.g.doubleclick.net\n0.0.0.0 pubads.g.doubleclick.net";
-        
+        string targ = "\n127.0.0.1 rad.msn.com\n127.0.0.1 live.rads.msn.com\n127.0.0.1 ads1.msn.com\n127.0.0.1 static.2mdn.net\n127.0.0.1 g.msn.com\n127.0.0.1 a.ads2.msads.net\n127.0.0.1 b.ads2.msads.net\n127.0.0.1 ac3.msn.com\n";
+
         #endregion
+        //spotiregion 24.09
+        string spoti = "0.0.0.0		pubads.g.doubleclick.net\n0.0.0.0		securepubads.g.doubleclick.net\n0.0.0.0		doubleclick.com\n0.0.0.0		doubleclick.de\n0.0.0.0		doubleclick.net\n            \n#nuovi spoty\n0.0.0.0		lon3-accesspoint-a21.lon3.spotify.com\n0.0.0.0		adclick.g.doubleclick.net\n0.0.0.0		\\/\\/adclick.g.doubleclick.net\n0.0.0.0		sto3-weblb-wg6.sto3.spotify.com\n0.0.0.0		mil04s04-in-f14.1e100.net\n0.0.0.0		adeventtracker.spotify.com\n0.0.0.0		asn.advolution.de\n0.0.0.0		spclient.wg.spotify.com\n0.0.0.0		ads.pubmatic.com\n0.0.0.0		gads.pubmatic.com\n0.0.0.0		open.spotify.com\n            \n#\n";
+
+        //endspotiregion
         private System.Windows.Forms.NotifyIcon notifyIcon1;
         private System.Windows.Forms.ContextMenu contextMenu1= new System.Windows.Forms.ContextMenu();
         private System.Windows.Forms.MenuItem menuItem1;
@@ -43,7 +47,9 @@ namespace Ad_Catch_v1._0
             WindowsPrincipal principal = new WindowsPrincipal(identity);
             isElevated = principal.IsInRole(WindowsBuiltInRole.Administrator);
             //
-
+            //update
+            targ += spoti;
+            //
             updatehostNoPopup();
             
             #region menu e notifyicon
