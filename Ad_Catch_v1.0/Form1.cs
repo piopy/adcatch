@@ -24,7 +24,7 @@ namespace Ad_Catch_v1._0
 
         #endregion
         //spotiregion 24.09
-        string spoti = "0.0.0.0		pubads.g.doubleclick.net\n0.0.0.0		securepubads.g.doubleclick.net\n0.0.0.0		doubleclick.com\n0.0.0.0		doubleclick.de\n0.0.0.0		doubleclick.net\n            \n#nuovi spoty\n0.0.0.0		lon3-accesspoint-a21.lon3.spotify.com\n0.0.0.0		adclick.g.doubleclick.net\n0.0.0.0		\\/\\/adclick.g.doubleclick.net\n0.0.0.0		sto3-weblb-wg6.sto3.spotify.com\n0.0.0.0		mil04s04-in-f14.1e100.net\n0.0.0.0		adeventtracker.spotify.com\n0.0.0.0		asn.advolution.de\n0.0.0.0		spclient.wg.spotify.com\n0.0.0.0		ads.pubmatic.com\n0.0.0.0		gads.pubmatic.com\n0.0.0.0		open.spotify.com\n            \n#\n";
+        string spoti = "\n0.0.0.0		pubads.g.doubleclick.net\n0.0.0.0		securepubads.g.doubleclick.net\n0.0.0.0		doubleclick.com\n0.0.0.0		doubleclick.de\n0.0.0.0		doubleclick.net\n            \n#nuovi spoty\n0.0.0.0		lon3-accesspoint-a21.lon3.spotify.com\n0.0.0.0		adclick.g.doubleclick.net\n0.0.0.0		\\/\\/adclick.g.doubleclick.net\n0.0.0.0		sto3-weblb-wg6.sto3.spotify.com\n0.0.0.0		mil04s04-in-f14.1e100.net\n0.0.0.0		adeventtracker.spotify.com\n0.0.0.0		asn.advolution.de\n0.0.0.0		spclient.wg.spotify.com\n0.0.0.0		ads.pubmatic.com\n0.0.0.0		gads.pubmatic.com\n0.0.0.0		open.spotify.com\n            \n#\n";
 
         //endspotiregion
         private System.Windows.Forms.NotifyIcon notifyIcon1;
@@ -205,12 +205,15 @@ namespace Ad_Catch_v1._0
                     if (File.Exists(backup)) MessageBox.Show("Service already started!");
                     else
                     {
+                        string oldhostcontent = File.ReadAllText(location);
                         
                         System.IO.File.Move(location, backup);  //crea backup
                         try { File.Delete(location); }
                         catch (FileNotFoundException) { }
                         File.WriteAllBytes(location, host);
                         System.IO.File.AppendAllText(location, targ);
+                        System.IO.File.AppendAllText(location, oldhostcontent); //mette cio che c' era prima nell host
+
                         MessageBox.Show("Service successfully started!");
                         this.status = 1;
                     }
