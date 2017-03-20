@@ -1,1 +1,10 @@
 D:\GitHub\adcatch\Ad_Catch_v1.0\bin\Debug\Ad_Catch.exe.config
+E:\GitHub\adcatch\Ad_Catch_v1.0\bin\Debug\Ad_Catch.exe.config
+E:\GitHub\adcatch\Ad_Catch_v1.0\bin\Debug\Ad_Catch.exe
+E:\GitHub\adcatch\Ad_Catch_v1.0\bin\Debug\Ad_Catch.pdb
+E:\GitHub\adcatch\Ad_Catch_v1.0\obj\Debug\Ad_Catch_v1._0.DownloadForm.resources
+E:\GitHub\adcatch\Ad_Catch_v1.0\obj\Debug\Ad_Catch_v1._0.Form1.resources
+E:\GitHub\adcatch\Ad_Catch_v1.0\obj\Debug\Ad_Catch_v1._0.Properties.Resources.resources
+E:\GitHub\adcatch\Ad_Catch_v1.0\obj\Debug\Ad_Catch.csproj.GenerateResource.Cache
+E:\GitHub\adcatch\Ad_Catch_v1.0\obj\Debug\Ad_Catch.exe
+E:\GitHub\adcatch\Ad_Catch_v1.0\obj\Debug\Ad_Catch.pdb
