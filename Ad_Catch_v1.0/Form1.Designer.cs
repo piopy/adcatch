@@ -33,12 +33,11 @@
             this.label3 = new System.Windows.Forms.Label();
             this.menuStrip1 = new System.Windows.Forms.MenuStrip();
             this.startToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.startAdCatchToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.stopAdCatchToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.aboutToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.checkForUpdatesToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.programUpdatesToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.hostUpdatesToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.panel1 = new System.Windows.Forms.Panel();
             this.menuStrip1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -66,7 +65,7 @@
             this.label3.AutoSize = true;
             this.label3.BackColor = System.Drawing.Color.Transparent;
             this.label3.ForeColor = System.Drawing.Color.Gray;
-            this.label3.Location = new System.Drawing.Point(176, 239);
+            this.label3.Location = new System.Drawing.Point(333, 252);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(93, 13);
             this.label3.TabIndex = 6;
@@ -89,26 +88,10 @@
             // 
             // startToolStripMenuItem
             // 
-            this.startToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.startAdCatchToolStripMenuItem,
-            this.stopAdCatchToolStripMenuItem});
             this.startToolStripMenuItem.Name = "startToolStripMenuItem";
-            this.startToolStripMenuItem.Size = new System.Drawing.Size(59, 20);
-            this.startToolStripMenuItem.Text = "Actions";
-            // 
-            // startAdCatchToolStripMenuItem
-            // 
-            this.startAdCatchToolStripMenuItem.Name = "startAdCatchToolStripMenuItem";
-            this.startAdCatchToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
-            this.startAdCatchToolStripMenuItem.Text = "Start Ad_Catch";
-            this.startAdCatchToolStripMenuItem.Click += new System.EventHandler(this.startAdCatchToolStripMenuItem_Click);
-            // 
-            // stopAdCatchToolStripMenuItem
-            // 
-            this.stopAdCatchToolStripMenuItem.Name = "stopAdCatchToolStripMenuItem";
-            this.stopAdCatchToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
-            this.stopAdCatchToolStripMenuItem.Text = "Stop Ad_Catch";
-            this.stopAdCatchToolStripMenuItem.Click += new System.EventHandler(this.stopAdCatchToolStripMenuItem_Click);
+            this.startToolStripMenuItem.Size = new System.Drawing.Size(43, 20);
+            this.startToolStripMenuItem.Text = "Start";
+            this.startToolStripMenuItem.Click += new System.EventHandler(this.OnOffButtonClick);
             // 
             // aboutToolStripMenuItem
             // 
@@ -140,18 +123,28 @@
             this.hostUpdatesToolStripMenuItem.Text = "Host Updates";
             this.hostUpdatesToolStripMenuItem.Click += new System.EventHandler(this.hostUpdatesToolStripMenuItem_Click);
             // 
+            // panel1
+            // 
+            this.panel1.BackColor = System.Drawing.Color.Transparent;
+            this.panel1.Location = new System.Drawing.Point(78, 25);
+            this.panel1.Name = "panel1";
+            this.panel1.Size = new System.Drawing.Size(282, 248);
+            this.panel1.TabIndex = 8;
+            this.panel1.Click += new System.EventHandler(this.OnOffButtonClick);
+            // 
             // Form1
             // 
             this.AccessibleName = "Ad_Catch";
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.BackColor = System.Drawing.SystemColors.ActiveCaption;
-            this.BackgroundImage = global::Ad_Catch_v1._0.Properties.Resources.ico;
+            this.BackColor = System.Drawing.SystemColors.ActiveBorder;
+            this.BackgroundImage = global::Ad_Catch_v1._0.Properties.Resources.ico_stopped;
             this.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
             this.ClientSize = new System.Drawing.Size(438, 274);
             this.Controls.Add(this.label3);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.menuStrip1);
+            this.Controls.Add(this.panel1);
             this.DoubleBuffered = true;
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
@@ -180,8 +173,7 @@
         private System.Windows.Forms.ToolStripMenuItem checkForUpdatesToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem programUpdatesToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem hostUpdatesToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem startAdCatchToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem stopAdCatchToolStripMenuItem;
+        private System.Windows.Forms.Panel panel1;
     }
 }
 

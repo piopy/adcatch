@@ -31,6 +31,7 @@ namespace Ad_Catch_v1._0
         private System.Windows.Forms.ContextMenu contextMenu1= new System.Windows.Forms.ContextMenu();
         private System.Windows.Forms.MenuItem menuItem1;
         public int status = 0;
+        public bool elevated;
         //cambiare host/hostparental/hostnospotify per generare versioni diverse
         public byte[] host= Properties.Resources.host;
         //
@@ -41,6 +42,15 @@ namespace Ad_Catch_v1._0
 
         private void Form1_Load(object sender, EventArgs e)
         {
+            //check if is running
+
+            if (System.Diagnostics.Process.GetProcessesByName(System.IO.Path.GetFileNameWithoutExtension(System.Reflection.Assembly.GetEntryAssembly().Location)).Count() > 1)
+            {
+                MessageBox.Show("Another instance of this application is running.");
+                Close();
+                return;
+            }
+
             // check admin or root
             bool isElevated;
             WindowsIdentity identity = WindowsIdentity.GetCurrent();
@@ -64,15 +74,26 @@ namespace Ad_Catch_v1._0
            
             this.notifyIcon1 = new System.Windows.Forms.NotifyIcon(new System.ComponentModel.Container());
             //notifyIcon1.Icon = new Icon(Directory.GetCurrentDirectory() + "\\files\\ico_small.ico"); OLD METHOD
+            
+            //
+            System.IntPtr icH = Properties.Resources.ico_stopped_small.GetHicon();
+            Icon icoStopped = Icon.FromHandle(icH);
+            icH = Properties.Resources.ico_small.GetHicon();
+            Icon icoStarted = Icon.FromHandle(icH);
 
-            notifyIcon1.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
-            notifyIcon1.Text = "Ad_Catch_v1.8";
+            if (status == 0) notifyIcon1.Icon = icoStopped;
+            else notifyIcon1.Icon = icoStarted;
+
+                //notifyIcon1.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
+                notifyIcon1.Text = "Ad_Catch";
             notifyIcon1.DoubleClick += new System.EventHandler(this.notifyIcon1_DoubleClick);
             notifyIcon1.ContextMenu = this.contextMenu1;
             #endregion
 
             this.FormClosed += FormClosed;
-            
+
+            if (status == 0) this.BackgroundImage = Properties.Resources.ico_stopped;
+            else this.BackgroundImage = Properties.Resources.ico;
 
             if (!isElevated)
             {
@@ -81,7 +102,7 @@ namespace Ad_Catch_v1._0
                 //hostUpdatesToolStripMenuItem.Enabled = false;
                 
             }
-
+            elevated = isElevated;
             
         }
 
@@ -153,7 +174,14 @@ namespace Ad_Catch_v1._0
             if(this.WindowState == FormWindowState.Minimized)
             { 
             this.Hide();
-            notifyIcon1.Visible = true;
+                System.IntPtr icH = Properties.Resources.ico_stopped_small.GetHicon();
+                Icon icoStopped = Icon.FromHandle(icH);
+                icH = Properties.Resources.ico_small.GetHicon();
+                Icon icoStarted = Icon.FromHandle(icH);
+
+                if (status == 0) notifyIcon1.Icon = icoStopped;
+                else notifyIcon1.Icon = icoStarted;
+                notifyIcon1.Visible = true;
             }
         }
 
@@ -194,8 +222,14 @@ namespace Ad_Catch_v1._0
         {
             string location = "C:\\Windows\\System32\\drivers\\etc\\hosts";
             string backup = "C:\\Windows\\System32\\drivers\\etc\\hosts.backupAdCatch";
-            
 
+            if (File.Exists(backup) && this.status == 0)
+            {
+                File.Delete(location);
+                System.IO.File.Copy(backup, location);
+                File.Delete(backup);
+                this.status = 0;
+            }
             if (this.status == 1) MessageBox.Show("Service already started!");
             if (this.status == 0)
             {
@@ -213,8 +247,9 @@ namespace Ad_Catch_v1._0
                         File.WriteAllBytes(location, host);
                         System.IO.File.AppendAllText(location, targ);
                         System.IO.File.AppendAllText(location, oldhostcontent); //mette cio che c' era prima nell host
-
-                        MessageBox.Show("Service successfully started!");
+                        this.BackgroundImage = Properties.Resources.ico;
+                        this.BackColor= System.Drawing.SystemColors.ActiveCaption;
+                        //MessageBox.Show("Service successfully started!");
                         this.status = 1;
                     }
                 }
@@ -226,7 +261,13 @@ namespace Ad_Catch_v1._0
         {
             string location = "C:\\Windows\\System32\\drivers\\etc\\hosts";
             string backup = "C:\\Windows\\System32\\drivers\\etc\\hosts.backupAdCatch";
-
+            if (File.Exists(backup) && this.status==0)
+            {
+                File.Delete(location);
+                System.IO.File.Copy(backup, location);
+                File.Delete(backup);
+                this.status = 1;
+            }
             if (this.status == 0) MessageBox.Show("Service already stopped!");
             if (this.status == 1)
             {
@@ -234,24 +275,31 @@ namespace Ad_Catch_v1._0
                 if (!File.Exists(backup)) { MessageBox.Show("Backup file not found"); }
                 else if (File.Exists(location) && File.Exists(backup))
                 {
-                    File.Delete(location);                      //
+                    try { File.Delete(location); }
+                    catch (Exception egeneric)
+                    {
+                        MessageBox.Show("Something went wrong. Try to manually restore backup");
+                        System.Diagnostics.Process.Start("C:\\Windows\\System32\\drivers\\etc\\");
+                    }//
                     System.IO.File.Copy(backup, location);      //ripristina backup
                     File.Delete(backup);                        //
-                    MessageBox.Show("Service successfully stopped!");
+                    this.BackgroundImage = Properties.Resources.ico_stopped;
+                    this.BackColor = System.Drawing.SystemColors.ActiveBorder;
+                    // MessageBox.Show("Service successfully stopped!");
                     this.status = 0;
                 }
             }
         }
 
-        private void startAdCatchToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            start();
-        }
+        //private void startAdCatchToolStripMenuItem_Click(object sender, EventArgs e)
+        //{
+        //    start();
+        //}
 
-        private void stopAdCatchToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            stop();
-        }
+        //private void stopAdCatchToolStripMenuItem_Click(object sender, EventArgs e)
+        //{
+        //    stop();
+        //}
 
         private void aboutToolStripMenuItem_Click(object sender, EventArgs e)
         {
@@ -266,6 +314,25 @@ namespace Ad_Catch_v1._0
         private void hostUpdatesToolStripMenuItem_Click(object sender, EventArgs e)
         {
             updatehost();
+        }
+
+        private void OnOffButtonClick(object sender, EventArgs e)
+        {
+            if (!elevated) return;
+            else
+            {
+                if (startToolStripMenuItem.Text == "Start")
+                {
+                    start();
+                    startToolStripMenuItem.Text = "Stop";
+                }
+                else if (startToolStripMenuItem.Text == "Stop")
+                {
+                    stop();
+                    startToolStripMenuItem.Text = "Start";
+                }
+            }
+
         }
     }
 }

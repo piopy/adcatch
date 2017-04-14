@@ -109,6 +109,8 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="ico.ico" />
+    <None Include="Resources\ico_stopped_small.png" />
+    <None Include="Resources\ico_stopped.png" />
     <None Include="Resources\host.bmp" />
     <EmbeddedResource Include="Resources\ico_small.png" />
     <None Include="Resources\hostparental" />
