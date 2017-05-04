@@ -12,7 +12,7 @@ see everyday on the web.
 p.s. i am NOT responsible for any damages. If you will contact me
      saying "i melted my PC" i will only laugh. a lot.
 
-![AdCatch](http://i.imgur.com/S8nlc0k.png)
+![AdCatch](http://i.imgur.com/fzVcN1v.png)
 
 
 ### INSTALL 
@@ -34,4 +34,4 @@ Program/Ad_Catch.exe
  batch-based of the software
 
 
-** Copyright (c) 2016 burningHAM18  **
+** Copyright (c) 2016, 2017 BurningHAM18  **
